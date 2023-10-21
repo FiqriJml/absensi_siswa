@@ -31,8 +31,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Terjadi kesalahan server.' });
 });
 
-// Jalankan server pada port 3000
-const port = 3000;
+// Jalankan server pada port 4000
+const port = 4000;
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);
 });
