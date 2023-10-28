@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Isiswa from '../../../types/Siswa';
+import DetailSiswa from '@/app/components/DetailSiswa';
 
 export async function generateStaticParams(params:any) {
     const res = await fetch('http://localhost:4000/api/siswa')
@@ -9,10 +10,9 @@ export async function generateStaticParams(params:any) {
     return lisSiswa.map((siswa) => {
         id: siswa._id
     })
-    
 }
 
-async function getSiswa(id: number) {
+async function getSiswa(id: string) {
     const res = await fetch('http://localhost:4000/api/siswa/' + id, {
         cache: 'no-cache',
         method: "GET",
@@ -27,19 +27,13 @@ async function getSiswa(id: number) {
 }
 
 interface IParams {
-    id: number;
+    id: string;
 }
 
-export default async function DetailSiswa({params}: {params: IParams}){
+export default async function DataSiswa({params}: {params: IParams}){
     const siswa:Isiswa = await getSiswa(params.id) 
     console.log(siswa)
     return (
-        <div>
-         <ul>
-            <li>id: {siswa._id}</li>
-            <li>Nama: {siswa.nama}</li>
-            <li>Umur: {siswa.umur}</li>
-         </ul>
-        </div>
+        <DetailSiswa siswa={siswa}/>
     )
 }

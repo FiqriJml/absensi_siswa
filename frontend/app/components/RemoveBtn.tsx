@@ -23,7 +23,7 @@ function RemoveBtn({ id }: RemoveBtnProps) {
   return (
     <>
       <button onClick={removeSiswa} className="text-gray-500 hover:text-gray-700">
-        <HiTrash size={24} />
+        <HiTrash size={20} />
       </button>
       
     </>
