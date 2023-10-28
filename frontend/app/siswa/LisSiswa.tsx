@@ -1,5 +1,6 @@
 import Isiswa from '../../types/Siswa';
 import Link from 'next/link';
+import RemoveBtn from '../components/RemoveBtn';
 const getLisSiswa = async () => {
   try {
     const res = await fetch('http://localhost:4000/api/siswa', {
@@ -43,8 +44,8 @@ const getLisSiswa = async () => {
                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{siswa.umur}</td>
                         <td>
                             <Link href={`/siswa/${siswa._id}`}>lihat </Link>
-                            <Link href={`/siswa_update/${siswa._id}`}>update </Link>
-                            <Link href={`/siswa/delete/${siswa._id}`}>delete </Link>
+                            <Link href={`/editSiswa/${siswa._id}`}>update </Link>
+                            <RemoveBtn/>
                         </td>
                       </tr>
                     );
