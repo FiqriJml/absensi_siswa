@@ -39,7 +39,7 @@ const DaftarSiswa = ({ dataSiswa, onLihat, onEdit, onDelete }: any) => {
                     <Link href={'siswa/'+siswa._id} className="text-gray-500 hover:text-gray-700">
                         <HiOutlineEye size={20} />
                     </Link>
-                    <Link href={'editSiswa'} className="text-gray-500 hover:text-gray-700">
+                    <Link href={'editSiswa/'+siswa._id} className="text-gray-500 hover:text-gray-700">
                         <HiPencilAlt size={20}/>
                     </Link>
                     <RemoveBtn id={siswa._id}/>
