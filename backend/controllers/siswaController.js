@@ -26,9 +26,9 @@ async function getSiswaById(req, res) {
 
 async function updateSiswa(req, res) {
   const id = req.params.id;
-  const { nama, umur } = req.body;
+  const { nama, nis, kelas, tanggal_lahir, no_kontak_darurat } = req.body;
   try {
-    const siswa = await Siswa.findByIdAndUpdate(id, { nama, umur }, { new: true });
+    const siswa = await Siswa.findByIdAndUpdate(id, { nama, nis, kelas, tanggal_lahir, no_kontak_darurat }, { new: true });
     if (siswa) {
       res.json({ status: 'Sukses', pesan: 'Data siswa berhasil diperbarui.' });
     } else {
@@ -54,9 +54,9 @@ async function deleteSiswa(req, res) {
 }
 
 async function addSiswa(req, res) {
-  const { nama, umur } = req.body;
+  const { nama, nis, kelas, tanggal_lahir, no_kontak_darurat } = req.body;
   try {
-    const siswaBaru = new Siswa({ nama, umur });
+    const siswaBaru = new Siswa({ nama, nis, kelas, tanggal_lahir, no_kontak_darurat });
     await siswaBaru.save();
     res.json({ status: 'Sukses', pesan: 'Siswa berhasil ditambahkan.' });
   } catch (error) {

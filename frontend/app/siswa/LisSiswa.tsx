@@ -1,6 +1,7 @@
 import Isiswa from '../../types/Siswa';
 import Link from 'next/link';
 import RemoveBtn from '../components/RemoveBtn';
+import {HiPencilAlt, HiEye} from 'react-icons/hi'
 const getLisSiswa = async () => {
   try {
     const res = await fetch('http://localhost:4000/api/siswa', {
@@ -42,10 +43,14 @@ const getLisSiswa = async () => {
                       <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={siswa._id}>
                         <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{siswa.nama}</td>
                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{siswa.umur}</td>
-                        <td>
-                            <Link href={`/siswa/${siswa._id}`}>lihat </Link>
-                            <Link href={`/editSiswa/${siswa._id}`}>update </Link>
-                            <RemoveBtn/>
+                        <td className='flex gap-1'>
+                            <Link href={`/siswa/${siswa._id}`} className='text-gray-500 hover:text-gray-700'>
+                              <HiEye size={24}/> 
+                            </Link>
+                            <Link href={`/editSiswa/${siswa._id}`} className='text-gray-500 hover:text-gray-700'>
+                              <HiPencilAlt size={24}/>  
+                            </Link>
+                            <RemoveBtn id={siswa._id}/>
                         </td>
                       </tr>
                     );
