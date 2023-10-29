@@ -4,6 +4,13 @@ const app = express();
 const cors = require('cors')
 const siswaRoutes = require('./routes/siswaRoutes');
 
+// untuk excell
+const multer = require("multer");
+const Siswa = require('./models/Siswa');
+const { uploadSiswa } = require('./controllers/siswaController');
+
+const upload = multer({ dest: "uploads/" });
+
 app.use(cors())
 
 app.use(express.json());
@@ -22,6 +29,9 @@ mongoose.connect('mongodb+srv://fiqri:absensi_smkn1bayan@cluster0.alepdk7.mongod
 
 // Gunakan berkas rute untuk endpoint '/siswa'
 app.use('/api/siswa', siswaRoutes);
+
+// untuk upload excel
+app.post("/upload", upload.single("file"), uploadSiswa);
 
 // Middleware untuk menangani permintaan yang tidak cocok dengan rute lainnya
 app.use((req, res) => {

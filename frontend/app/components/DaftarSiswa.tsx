@@ -10,11 +10,18 @@ const DaftarSiswa = ({ dataSiswa, onLihat, onEdit, onDelete }: any) => {
   return (
     <div className="max-w-2xl mx-auto mt-8">
       <h2 className="text-2xl font-semibold mb-4">Daftar Siswa</h2>
-      <Link href={'addSiswa'}>
-        <button className="bg-gray-800 hover:bg-gray-700 text-white text-sm font-bold py-2 px-4 rounded">
-          Tambah Siswa
-        </button>
-      </Link>
+      <div className='flex gap-1 mb-1'>
+        <Link href={'addSiswa'}>
+          <button className="bg-gray-800 hover:bg-gray-700 text-white text-sm font-bold py-2 px-4 rounded">
+            Tambah Siswa
+          </button>
+        </Link>
+        <Link href={'uploadSiswa'}>
+          <button className="bg-blue-800 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded">
+            Upload Siswa
+          </button>
+        </Link>
+      </div>
       <table className="min-w-full bg-white border border-gray-200">
         <thead>
           <tr>

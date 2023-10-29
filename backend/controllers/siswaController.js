@@ -1,5 +1,6 @@
 // controllers/siswaController.js
 const Siswa = require('../models/Siswa');
+const xlsx = require("xlsx");
 
 async function getAllSiswa(req, res) {
   try {
@@ -63,6 +64,17 @@ async function addSiswa(req, res) {
     res.status(500).json({ error: 'Terjadi kesalahan saat menambahkan siswa.' });
   }
 }
+async function uploadSiswa(req, res) {
+  const workbook = xlsx.readFile(req.file.path);
+  const sheet_name_list = workbook.SheetNames;
+  const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
+  try {
+    Siswa.insertMany(data)
+    res.json({ status: 'Sukses', pesan: 'Siswa berhasil ditambahkan.', data:data });
+  } catch (error) {
+    res.status(500).json({ error: 'Terjadi kesalahan saat menambahkan siswa.' });
+  }
+};
 
 module.exports = {
   getAllSiswa,
@@ -70,4 +82,5 @@ module.exports = {
   addSiswa, // Tambahkan fungsi addSiswa di sini
   updateSiswa,
   deleteSiswa,
+  uploadSiswa,
 };
